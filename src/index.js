@@ -1,16 +1,21 @@
-const express = require("express"); // Correct spelling of 'express'
-const app = express(); // No need for 'new' with express
+const express = require("express"); // Import express
+const app = express(); // Create an express app instance
 
-app.use(express.json()); // Missing semicolon (optional but good practice)
+// Middleware to parse JSON requests
+app.use(express.json());
 
+// Root route
 app.use("/", (req, res) => {
-  res.json({ msg: "App Listen" }); // Missing semicolon
-});
-app.use("/sum", (req, res) => {
-  res.json({ msg: "2+3 = 5" }); // Missing semicolon
+  res.json({ msg: "App Listen" });
 });
 
-app.listen(process.env.PORT || 8000, () => {
-  // Missing a comma between the port number and the callback function
-  console.log(`App Listen on ${process.env.PORT || 8000}`);
+// "/sum" route
+app.use("/sum", (req, res) => {
+  res.json({ msg: "2+3 = 5" });
+});
+
+// Start the server on a specified PORT or default to 8000
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => {
+  console.log(`App is listening on port ${PORT}`);
 });
