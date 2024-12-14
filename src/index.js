@@ -6,6 +6,9 @@ app.use(express.json()); // Missing semicolon (optional but good practice)
 app.use("/", (req, res) => {
   res.json({ msg: "App Listen" }); // Missing semicolon
 });
+app.use("/sum", (req, res) => {
+  res.json({ msg: "2+3 = 5" }); // Missing semicolon
+});
 
 app.listen(process.env.PORT || 8000, () => {
   // Missing a comma between the port number and the callback function
