@@ -1,20 +1,19 @@
-const express = require("express"); // Import express
-const app = express(); // Create an express app instance
+const express = require("express");
+const app = express();
 
-// Middleware to parse JSON requests
-app.use(express.json());
+app.use(express.json()); // Middleware to parse JSON requests
 
 // Root route
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   res.json({ msg: "App Listen" });
 });
 
 // "/sum" route
-app.use("/sum", (req, res) => {
+app.get("/sum", (req, res) => {
   res.json({ msg: "2+3 = 5" });
 });
 
-// Start the server on a specified PORT or default to 8000
+// Start the server
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`App is listening on port ${PORT}`);
